@@ -8,8 +8,12 @@ import {
 import "./form-input.styles.scss";
 import styled from "styled-components";
 import { Button } from "../../../components/Button";
+import { UserContext } from "../../../Context/user.context";
+import { useContext } from "react";
 
 export const SignUpForm = () => {
+  const { setCurrentUser} = useContext(UserContext);
+
   const handleSubmit = async (values, actions) => {
     const { email, password, displayName } = values;
     try {
@@ -17,6 +21,7 @@ export const SignUpForm = () => {
         email,
         password
       );
+      setCurrentUser(user);
       await createUserDocumentFromAuth(user, { displayName });
       actions.resetForm({
         values: {
