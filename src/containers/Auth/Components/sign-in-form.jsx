@@ -8,15 +8,11 @@ import {
   signInAuthUserWithEmailAndPassword,
   signInWithGooglePopup,
 } from "../../../utils/firebase/firebase.utils";
-import { useContext } from "react";
-import { UserContext } from "../../../Context/user.context";
 
 export const SignInForm = () => {
-  const {setCurrentUser} = useContext(UserContext);
 
-  const logGoogleUser = async () => {
-    const { user } = await signInWithGooglePopup();
-    await createUserDocumentFromAuth(user);
+  const signInWithGoogle = async () => {
+    await signInWithGooglePopup();
   };
 
   const handleSubmit = async (values, actions) => {
@@ -26,7 +22,6 @@ export const SignInForm = () => {
         email,
         password
       );
-      setCurrentUser(user);
       actions.resetForm({
         values: {
           email: "",
@@ -103,7 +98,7 @@ export const SignInForm = () => {
               type="button"
               children="Google sign in"
               buttonType="google"
-              onClick={logGoogleUser}
+              onClick={signInWithGoogle}
             ></Button>
           </ButtonsContainer>
         </Form>
