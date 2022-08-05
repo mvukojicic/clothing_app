@@ -2,9 +2,8 @@ import CategoriesPage from "../Categories/index";
 import { Routes, Route } from "react-router-dom";
 import Navigation from "../Navigation/index";
 import SignIn from "../Auth/index";
-const Shop = () => {
-  return <h1>'TU saaaam'</h1>;
-};
+import { Shop } from "../Shop/index"
+
 
 const App = () => {
   return (
